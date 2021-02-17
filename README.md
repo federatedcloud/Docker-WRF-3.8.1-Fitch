@@ -1,5 +1,5 @@
 # Docker-WRF-3.8.1-Fitch
-A public Docker container for WRF 3.8.1 with Fitch patch
+A public Docker container for WRF 3.8.1 with Fitch patches.
 
 # Build
 The Docker container can be built using the script `docker-build.sh`, which will
@@ -19,4 +19,16 @@ This is actually the last command in the `docker-build.sh` script, so Docker bui
 errors will be listed upon completion.  If there are no errors listed the container
 was built successfully.  Code and dependencies should be checked independently of
 a Docker build error list.
+
+## Patches
+Since there are some [known problems with WRF 3.8.1](https://www2.mmm.ucar.edu/wrf/users/wrfv3.8/known-prob-3.8.1.html),
+we have implemented the following patches provided by the WRF Users page:
+* [`module_radiation_driver.F`](https://www2.mmm.ucar.edu/wrf/src/fix/module_radiation_driver.F.fix-for-v3.8.1.tar.gz)
+* [`module_cu_g3.F`](https://www2.mmm.ucar.edu/wrf/src/fix/module_cu_g3_random_seed_fix.F.gz)
+* [`Registry.EM_COMMON`](https://www2.mmm.ucar.edu/wrf/src/fix/Registry.EM_COMMON.v381.tar.gz)
+
+All of these patches, as well as our custom patches, are included in the repository.
+
+## Compiling
+WRF and WPS compilation is performed in bash.  Please see the Dockerfile for full commands.
 
