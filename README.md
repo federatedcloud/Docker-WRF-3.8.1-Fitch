@@ -2,11 +2,12 @@
 A public Docker container for WRF 3.8.1 with Fitch patches.
 
 # Build
-The Docker container can be built using the script `docker-build.sh`, which will
-produce an output file named `build_output.txt`.  The build will take some time,
-so it is recommended to use a terminal multiplexer, such as tmux.  One can view
-the full output at any time using a text editor to open `build_output.txt`.  To
-determine what step the build it is at, one can do:
+The Docker container can be built using the script [`docker-build.sh`](https://github.com/federatedcloud/Docker-WRF-3.8.1-Fitch/blob/main/docker-build.sh),
+which will produce an output file named `build_output.txt` (included in the 
+[`.gitignore`](https://github.com/federatedcloud/Docker-WRF-3.8.1-Fitch/blob/main/.gitignore)).
+The build will take some time, so it is recommended to use a terminal multiplexer, such as tmux.
+One can view the full output at any time using a text editor to open `build_output.txt`.
+To determine what step the build it is at, one can do:
 
     cat build_output.txt | grep Step | tail -n 1
 
@@ -30,5 +31,6 @@ we have implemented the following patches provided by the WRF Users page:
 All of these patches, as well as our custom patches, are included in the repository.
 
 ## Compiling
-WRF and WPS compilation is performed in bash.  Please see the Dockerfile for full commands.
+WRF and WPS compilation is performed in bash.  Please see the [Dockerfile](https://github.com/federatedcloud/Docker-WRF-3.8.1-Fitch/blob/main/Dockerfile)
+for full commands.
 
