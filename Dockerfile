@@ -154,6 +154,5 @@ RUN ls -al /wrf/WRFV3/main/wrf.exe || true
 RUN ls -al /wrf/WRFV3/main/ndown.exe || true
 RUN ls -al /wrf/WRFV3/main/tc.exe || true
 
-#EXPOSE 22
-#CMD ["/usr/sbin/sshd", "-D"]
+RUN ldconfig
 
