@@ -1,9 +1,9 @@
 # Docker-WRF-3.8.1-Fitch
 A public Docker container for WRF 3.8.1 with Fitch patches.
 
-Docker image available on [Docker Hub](https://hub.docker.com/repository/docker/cornellcac/wrf)
+Docker image: [Docker Hub](https://hub.docker.com/repository/docker/cornellcac/wrf)
 
-[![https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg](https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg)](https://singularity-hub.org/collections/5227)
+Singularity image: [![https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg](https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg)](https://singularity-hub.org/collections/5227)
 
 # Build
 The Docker container can be built using the script [`docker-build.sh`](https://github.com/federatedcloud/Docker-WRF-3.8.1-Fitch/blob/main/docker-build.sh),
