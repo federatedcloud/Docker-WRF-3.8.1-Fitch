@@ -1,2 +1,5 @@
 build_output.txt
 *.swp
+
+# Do not commit singularity images
+*.sif
