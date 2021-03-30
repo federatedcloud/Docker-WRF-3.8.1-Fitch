@@ -1,5 +1,16 @@
 build_output.txt
 *.swp
 
-# Do not commit singularity images
+# Singularity
 *.sif
+
+# WRF and WPS
+WRFV3
+WPS
+LIBRARIES
+TESTS
+
+# Slurm output
+slurm-*.out
+slurm-*.err
+
