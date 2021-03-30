@@ -29,9 +29,5 @@ export WRF_EM_CORE=1
 cd ~/WRF_Benchmarking/Docker-WRF-3.8.1-Fitch/Stampede2/Build_WRF/WRFV3
 
 # Compile
-./compile -j 20 em_real >& compile_em_real.log
-
-# Run the following command on Stampede2 to submit a job to run this compilation on 20 cores
-# Will need to add the -A flag with allocation number 
-# sbatch -p development -n 20 -N 1 -t 00:30:00 ./my_compile.sh
+./compile em_real >& compile_em_real.log
 
