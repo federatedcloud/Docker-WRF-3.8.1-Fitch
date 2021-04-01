@@ -1,9 +1,8 @@
 #!/bin/bash
+# Script for installing the libraries needed before WRF and WPS compile
 
 # Load system modules
-module load intel/19.1.1 mvapich2/2.3.5 pnetcdf/1.8.1 phdf5/1.8.16
-
-# Script for installing the libraries needed before WRF and WPS compile
+module load intel/19.1.1 mvapich2/2.3.5 pnetcdf/1.8.1 phdf5/1.8.16 parallel-netcdf/4.3.3.1
 
 cd ~/WRF_Benchmarking/Docker-WRF-3.8.1-Fitch/Stampede2/Intel/LIBRARIES
 
