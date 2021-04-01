@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script to run ./configure on Stampede2
+# Script to configure and compile WPS on Stampede2
 
 # Load system modules
 module load intel/19.1.1 mvapich2/2.3.5 pnetcdf/1.8.1 phdf5/1.8.16 parallel-netcdf/4.3.3.1
@@ -28,18 +28,15 @@ export WRF_EM_CORE=1
 
 export LDFLAGS="-lm -lnetcdff -lnetcdf -L${TACC_NETCDF_LIB}"
 
-# Copy in patches
-cp ../../../patches/wrf_bug_fixes/Registry.EM_COMMON ./Registry/
-cp ../../../patches/wrf_bug_fixes/module_radiation_driver.F ./phys/
-cp ../../../patches/wrf_bug_fixes/module_cu_g3.F ./phys/
+cd ~/WRF_Benchmarking/Docker-WRF-3.8.1-Fitch/Stampede2/Intel/WPS
 
 # Fresh config
 ./clean -a
 
 # input 34 (gcc/gfortran) and 1 (basic nesting) to configure script
-echo '21\n1\n' | ./configure
+echo '1\n' | ./configure -d 
+sed -i -e 's/-L$(NETCDF)\/lib/-L$(NETCDF)\/lib -lnetcdff -lnetcdf -L$(PNETCDF)\/lib -lpnetcdf /' ./configure.wps
+#sed -i -e 's/-L$(NETCDF)\/lib/-L$(NETCDF)\/lib -lnetcdff -lnetcdf /' ./configure.wps
 
-# modifications for Intel 
-sed -i -e 's/-openmp/-qopenmp/' ./configure.wrf
-sed -i -e 's/-lpnetcdf/-L${TACC_PNETCDF_LIB} -lnetcdff -lnetcdf /' ./configure.wrf
+./compile >& log.compile
 
