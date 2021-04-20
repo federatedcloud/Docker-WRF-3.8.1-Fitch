@@ -1,9 +1,9 @@
 #!/bin/bash
-# Script to run ./configure on Stampede2
+# Script to run configure and compile with Intel 18 on Stampede2
 
 # Load system modules
 module purge
-module load intel/19.1.1 mvapich2/2.3.5 pnetcdf/1.8.1 phdf5/1.8.16 parallel-netcdf/4.3.3.1
+module load intel/18.0.2 mvapich2/2.3.4 pnetcdf/1.11.0 phdf5/1.10.4 netcdf/4.6.2
 
 cd ~/WRF_Benchmarking/Docker-WRF-3.8.1-Fitch/Stampede2/Intel/WRFV3
 
@@ -20,6 +20,7 @@ export LDFLAGS=-L$DIR/grib2/lib
 export CPPFLAGS=-I$DIR/grib2/include
 
 export PATH=$PATH:${TACC_NETCDF_BIN}:${TACC_PNETCDF_BIN}
+#export PATH=$PATH:${TACC_NETCDF_BIN}
 export NETCDF=${TACC_NETCDF_DIR}
 export PNETCDF=${TACC_PNETCDF_DIR}
 export PHDF5=${TACC_HDF5_DIR} 
@@ -45,4 +46,7 @@ echo '21\n1\n' | ./configure
 sed -i -e 's/-openmp/-qopenmp/' ./configure.wrf
 sed -i -e 's/-lpnetcdf/-L${TACC_PNETCDF_LIB} -lnetcdff -lnetcdf /' ./configure.wrf
 sed -i -e 's/gcc/icc/' ./configure.wrf
+
+# Compile
+time ./compile -j 2 em_real >& compile_em_real.log
 
