@@ -3,7 +3,8 @@
 
 # Load system modules
 module purge
-module load intel/18.0.2 mvapich2/2.3.4 pnetcdf/1.11.0 phdf5/1.10.4 netcdf/4.6.2
+#module load intel/18.0.2 mvapich2/2.3.4 pnetcdf/1.11.0 phdf5/1.10.4 netcdf/4.6.2
+module load intel/18.0.2 impi/18.0.2 pnetcdf/1.11.0 phdf5/1.10.4 netcdf/4.6.2
 
 cd ~/WRF_Benchmarking/Docker-WRF-3.8.1-Fitch/Stampede2/Intel/WRFV3
 
@@ -19,8 +20,7 @@ export JASPERINC=$DIR/grib2/include
 export LDFLAGS=-L$DIR/grib2/lib
 export CPPFLAGS=-I$DIR/grib2/include
 
-export PATH=$PATH:${TACC_NETCDF_BIN}:${TACC_PNETCDF_BIN}
-#export PATH=$PATH:${TACC_NETCDF_BIN}
+export PATH=${TACC_NETCDF_BIN}:${TACC_PNETCDF_BIN}:$PATH
 export NETCDF=${TACC_NETCDF_DIR}
 export PNETCDF=${TACC_PNETCDF_DIR}
 export PHDF5=${TACC_HDF5_DIR} 
@@ -48,5 +48,6 @@ sed -i -e 's/-lpnetcdf/-L${TACC_PNETCDF_LIB} -lnetcdff -lnetcdf /' ./configure.w
 sed -i -e 's/gcc/icc/' ./configure.wrf
 
 # Compile
-time ./compile -j 2 em_real >& compile_em_real.log
+#time ./compile -j 2 em_real >& compile_em_real.log
+time ./compile -j 8 em_real >& compile_em_real.log
 
