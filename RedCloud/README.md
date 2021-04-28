@@ -31,6 +31,8 @@ sudo apt install vim wget unzip
 cd /mnt/RedCloud/Intel/LIBRARIES/
 
 ./install_lib.sh
+
+#? apt install -y intel-hpckit
 ```
 -> work in progress
 
