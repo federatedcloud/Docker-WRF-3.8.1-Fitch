@@ -66,65 +66,56 @@ echo 'after netcdf'
 #netcdf-4.1.3/fortran/nfconfig1.inc
 #netcdf-4.1.3/fortran/netcdf4.inc
 #netcdf-4.1.3/libcf/nfconfig.inc
-exit 0
 
-
-
-# We're using the system NetCDF module # that was Stampede2
-#export NETCDF=${TACC_NETCDF_DIR}
-
-## mpich - we may actually use intel mpi
-##wget https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/mpich-3.0.4.tar.gz
-#
-#wget https://www.mpich.org/static/downloads/3.0.4/mpich-3.0.4.tar.gz
-#
-#tar -xzvf mpich-3.0.4.tar.gz
-#cd mpich-3.0.4
-#./configure --prefix=$DIR/mpich
-#make
-#make install
-#export PATH=$DIR/mpich/bin:$PATH
-#cd ..
-
-# We're using the system MVAPICH2 implementation
+# Intel Oneapi HPCKIT intel MPI included
 
 # zlib 1.2.7
 #wget https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/zlib-1.2.7.tar.gz
 
+# todo idempotent
+echo "fecthing zlib"
 wget https://zlib.net/fossils/zlib-1.2.7.tar.gz
-
 tar -xzvf zlib-1.2.7.tar.gz
 cd zlib-1.2.7
+echo "building zlib"
+set -e
 ./configure --prefix=$DIR/grib2
 make
 make install
+set +e
 cd ..
+echo "built zlib"
 
 # libpng 1.2.50
 #wget https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/libpng-1.2.50.tar.gz
-
+echo "fetching libpng"
 wget https://sourceforge.net/projects/libpng/files/libpng12/older-releases/1.2.50/libpng-1.2.50.tar.gz
 
 tar -xzvf libpng-1.2.50.tar.gz
 cd libpng-1.2.50
+echo "building libpng"
 ./configure --prefix=$DIR/grib2
 make
 make install
 cd ..
+echo "built libpng"
 
 # Jasper 1.900.1
 #wget https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compile_tutorial/tar_files/jasper-1.900.1.tar.gz
 #tar xzvf jasper-1.900.1.tar.gz
 
-# do we need jasper for WRF?
+## do we need jasper for WRF?
+#
+##wget https://www.ece.uvic.ca/~frodo/jasper/software/jasper-1.900.1.zip
+##unzip jasper-1.900.1.zip
+##
+##cd jasper-1.900.1
+##./configure --prefix=$DIR/grib2
+##make
+##make install
+##cd ..
 
-wget https://www.ece.uvic.ca/~frodo/jasper/software/jasper-1.900.1.zip
-unzip jasper-1.900.1.zip
+echo "installed all required libraries"
 
-cd jasper-1.900.1
-./configure --prefix=$DIR/grib2
-make
-make install
-cd ..
-
+exit 0
 
