@@ -31,7 +31,26 @@ sudo apt install vim wget unzip
 cd /mnt/RedCloud/Intel/LIBRARIES/
 
 ./install_lib.sh
+
+#? apt install -y intel-hpckit
+
+cd /mnt/RedCloud/Intel
+
+# untar WRF code from NCAR
+
+tar xzvf WRFV3.8.1.TAR.gz
+
+cp compile_intel_rc.sh WRFV3
+
+cd WRFV3
 ```
+
+next - compile pnetcdf , repeat install_libs
+
+adjust paths and ldflags prior to configure
+
+compile WRF
+
 -> work in progress
 
 
