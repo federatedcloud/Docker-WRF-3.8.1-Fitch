@@ -67,6 +67,30 @@ echo 'after netcdf'
 #netcdf-4.1.3/fortran/netcdf4.inc
 #netcdf-4.1.3/libcf/nfconfig.inc
 
+#export DIR=/mnt/RedCloud/Intel/LIBRARIES
+export PNETCDF_VERSION=1.11.2
+
+set -eux
+# install m4 dependency from ubuntu system packages
+apt install -y m4
+wget https://parallel-netcdf.github.io/Release/pnetcdf-1.11.2.tar.gz
+gzip -dc pnetcdf-${PNETCDF_VERSION}.tar.gz | tar -xf -
+cd pnetcdf-${PNETCDF_VERSION}
+./configure --prefix=$DIR/pnetcdf \
+	MPIF90=/opt/intel/oneapi/mpi/2021.2.0//bin/mpif90
+# ? set mpicc and mpifort location
+make -j 8
+make install prefix=$DIR/pnetcdf
+PATH=$DIR/pnetcdf/bin:$PATH ; export PATH
+which ncmpidump
+which ncmpidiff
+
+#references
+#https://parallel-netcdf.github.io/wiki/Download.html
+#https://github.com/Parallel-NetCDF/PnetCDF/blob/master/INSTALL
+
+set +e
+
 # Intel Oneapi HPCKIT intel MPI included
 
 # zlib 1.2.7
