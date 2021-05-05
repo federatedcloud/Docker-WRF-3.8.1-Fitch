@@ -39,7 +39,7 @@ cp ../../../patches/wrf_bug_fixes/module_cu_g3.F ./phys/
 # Fresh config
 ./clean -a
 
-# input 34 (gcc/gfortran) and 1 (basic nesting) to configure script
+# input 21 (icc/ifort) and 1 (basic nesting) to configure script
 echo '21\n1\n' | ./configure
 
 # modifications for Intel 
