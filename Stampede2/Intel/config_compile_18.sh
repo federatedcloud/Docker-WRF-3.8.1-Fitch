@@ -57,11 +57,15 @@ awk -v add="                      -I${WRF_SRC_ROOT_DIR}/external/io_pnetcdf \\" 
 awk -v add="                      -I${PNETCDF}/include \\" 'NR==201 {print add} {print}' configure.wrf > temp && mv temp configure.wrf
 awk -v add="                      -I${WRF_SRC_ROOT_DIR}/dyn_nmm \\" 'NR==202 {print add} {print}' configure.wrf > temp && mv temp configure.wrf
 awk -v add="                      -I${WRF_SRC_ROOT_DIR}/dyn_em \\" 'NR==203 {print add} {print}' configure.wrf > temp && mv temp configure.wrf
+awk -v add="                      -I${WRF_SRC_ROOT_DIR}/main \\" 'NR==204 {print add} {print}' configure.wrf > temp && mv temp configure.wrf
 
-export MODULEPATH=${WRF_SRC_ROOT_DIR}/dyn_nmm:${WRF_SRC_ROOT_DIR}/dyn_em:$MODULEPATH
+export MODULEPATH=${WRF_SRC_ROOT_DIR}/dyn_nmm:${WRF_SRC_ROOT_DIR}/dyn_em:${WRF_SRC_ROOT_DIR}/main:$MODULEPATH
 echo "MODULEPATH = ${MODULEPATH}"
 
 # Compile
 #time ./compile -j 2 em_real >& compile_em_real.log
-time ./compile -j 8 em_real >& compile_em_real.log
+#time ./compile -j 8 em_real >& compile_em_real.log
+
+#TESTING serial compile to determine which error occurs first
+time ./compile -j 1 em_real >& compile_em_real.log
 
